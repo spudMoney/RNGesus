@@ -27,8 +27,14 @@ function rollHandler(req, res) {
 		  	  switch(rollBody){
 				  case 420:
 					rollHead = "You rolled MAD BLUNTZ SON ";
+					  break;
+				  case 404:
+					rollHead = "404: roll not found";
+					rollBody = "";
+					  break;
 				  default:
 					rollHead = "You rolled ";
+					  break;
 			  }
 			  var rollResponse = rollHead + rollBody;
 			  res.writeHead(200, {'Content-Type': 'text/html'});
