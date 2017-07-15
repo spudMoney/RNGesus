@@ -11,7 +11,7 @@ function parseRoll(rollText) {
 		var matches = reggie.exec(rollText);
 		return roll(matches[1], matches[2]);
 	}
-	else return "Invalid request";
+	else return "bruh I can't read that";
 }
 
 function rollHandler(req, res) {
@@ -22,7 +22,15 @@ function rollHandler(req, res) {
           });
           req.on('end', function () {
               console.log("Received roll request: " + body);
-			  var rollResponse = "Your roll: " + parseRoll(body);
+		  	  var rollBody = parseRoll(body);
+		  	  var rollHead = "";
+		  	  switch(rollBody){
+				  case 420:
+					rollHead = "You rolled MAD BLUNTZ SON ";
+				  default:
+					rollHead = "You rolled ";
+			  }
+			  var rollResponse = rollHead + rollBody;
 			  res.writeHead(200, {'Content-Type': 'text/html'});
 	          res.end(rollResponse);
           });
