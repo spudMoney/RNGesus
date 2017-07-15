@@ -16,22 +16,22 @@ function parseRoll(rollText) {
 
 function rollHandler(req, res) {
 	if (req.method == 'POST') {
-          var body = '';
-          req.on('data', function (data) {
-              body += data;
-          });
-          req.on('end', function () {
-              console.log("Received roll request: " + body);
-			  var rollResponse = "Your roll: " + parseRoll(body);
-			  res.writeHead(200, {'Content-Type': 'text/html'});
-	          res.end(rollResponse);
-          });
-      }
-      else
-      {
-          res.writeHead(403, {'Content-Type': 'text/html'});
-          res.end("QUIT THAT");
-      }
+        var body = '';
+        req.on('data', function (data) {
+         	body += data;
+        });
+        req.on('end', function () {
+        	console.log("Received roll request: " + body);
+			var rollResponse = "Your roll: " + parseRoll(body);
+		res.writeHead(200, {'Content-Type': 'text/html'});
+	    	res.end(rollResponse);
+        });
+    }
+    else
+    {
+    	res.writeHead(403, {'Content-Type': 'text/html'});
+    	res.end("QUIT THAT");
+    }
 }
 
 const server = http.createServer(rollHandler);
